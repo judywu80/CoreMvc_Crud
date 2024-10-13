@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using YungChing.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<YungChingContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("YungChingContext") ?? throw new InvalidOperationException("Connection string 'YungChingContext' not found.")));
 
 // Add services to the container.
 
